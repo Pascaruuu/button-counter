@@ -11,6 +11,7 @@ How to run:
        or
        npx tsx src/lib/server/db_dev.ts
     3. After running, the counter will be reset to its initial state (counter = 0).
+    4. If you get an error, make sure to install "npm install dotenv"
 */
 
 import { createClient } from "@libsql/client";

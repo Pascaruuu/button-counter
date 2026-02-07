@@ -1,5 +1,4 @@
 import { db } from "./db";
-
 /* Output format:
 {
     getDataFromDB(): {
@@ -9,7 +8,6 @@ import { db } from "./db";
     incrementCounter(): void
 }
 */
-
 export const getDataFromDB = async () => {
     const res = await db.execute(`SELECT counter, last_clicked FROM button_counters LIMIT 1`);
     if (res.rows.length === 0) {
@@ -18,7 +16,6 @@ export const getDataFromDB = async () => {
             last_clicked: null
         };
     }
-
     return {
         counter: res.rows[0].counter as number,
         last_clicked: res.rows[0].last_clicked as string
@@ -26,7 +23,13 @@ export const getDataFromDB = async () => {
 };
 
 export const incrementCounter = async () => {
-    const res = await db.execute(`INSERT INTO button_counters (id, counter) VALUES (1, 1) ON CONFLICT (id) DO UPDATE SET counter = counter + 1`);
+    const res = await db.execute(`
+        INSERT INTO button_counters (id, counter, last_clicked) 
+        VALUES (1, 1, CURRENT_TIMESTAMP) 
+        ON CONFLICT (id) DO UPDATE SET 
+            counter = counter + 1,
+            last_clicked = CURRENT_TIMESTAMP
+    `);
     if (res.rowsAffected === 0) {
         throw new Error("Failed to update counter");
     }
