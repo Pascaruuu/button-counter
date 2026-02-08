@@ -3,13 +3,12 @@
 	import type { PageData } from './$types';
 
 	let { data }: { data: PageData } = $props();
-	let loading = $state(false);
 
-	// local timezone
+	// Format timestamp to our local timezone
 	function formatLocalTime(timestamp: string | null) {
 		if (!timestamp) return null;
-		const date = new Date(timestamp + 'Z'); // 'Z' is to indicate UTC
-		return date.toLocaleString(); // this converts to our local timezone
+		const date = new Date(timestamp + 'Z'); // The Z stands for: Zulu time = UTC±00:00 (It comes from ISO-8601 format: 2026-02-07T10:30:00Z)
+		return date.toLocaleString(); // Converts to our local timezone
 	}
 </script>
 
@@ -21,14 +20,15 @@
 	{/if}
 	
 	<form method="POST" use:enhance={() => {
-		loading = true;
+		// Optimistically increment the counter immediately
+		data.count.counter += 1;
+		
 		return async ({ update }) => {
-			await update();
-			loading = false;
+			await update({ reset: false });
 		};
 	}}>
-		<button type="submit" disabled={loading}>
-			{loading ? 'Loading...' : 'Click Me!'}
+		<button type="submit">
+			Click Me!
 		</button>
 	</form>
 </div>
@@ -44,11 +44,6 @@
 		padding: 0.5rem 1rem;
 		font-size: 1rem;
 		cursor: pointer;
-	}
-	
-	button:disabled {
-		opacity: 0.5;
-		cursor: not-allowed;
 	}
 	
 	p {
