@@ -28,6 +28,10 @@
 		}}>
 			<IncrementButton />
 		</form>
+        <div class="hint">
+            <span>try</span>
+            <span class="spacebar-key">SPACE</span>
+        </div>
 	</div>
 </div>
 
@@ -64,11 +68,31 @@
 		gap: 40px;
 		max-width: 80%;
 		padding: 40px;
+        padding-top: 120px;
 	}
 
 	form {
 		margin-top: -40px;
 	}
+
+    .hint {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        color: #8b7ab8;
+        font-size: 12px;
+        margin-top: 10px;
+    }
+
+    .spacebar-key {
+        background: #2a2a4a;
+        border: 2px solid #4a4a6a;
+        border-radius: 4px;
+        padding: 4px 12px;
+        font-size: 10px;
+        color: #fff;
+        box-shadow: 0 2px 0 #1a1a2a;
+    }
 
 	@media (max-width: 768px) {
 		.content-container {
