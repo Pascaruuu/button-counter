@@ -11,7 +11,8 @@
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
 		"reset-db": "npx tsx src/lib/server/db_dev.ts",
-		"unit-test": "npx vitest"
+		"test:unit": "vitest run --config ./tests/unit_tests/vitest.config.ts",
+    "test:unit:watch": "vitest --config ./tests/unit_tests/vitest.config.ts"
 	},
 	"devDependencies": {
 		"@libsql/client": "^0.17.0",
