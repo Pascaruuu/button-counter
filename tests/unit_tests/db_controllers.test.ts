@@ -19,7 +19,11 @@ describe('counterService', () => {
       // Setup: Mock a database response
       const mockTimestamp = "2024-06-01 12:00:00";
       vi.mocked(db.execute).mockResolvedValueOnce({
-        rows: [{ counter: 5, last_clicked: mockTimestamp }],
+        rows: [{
+          counter: 5, 
+          last_clicked: mockTimestamp,
+          length: 0
+        }],
         columns: [],
         rowsAffected: 0,
         lastInsertRowid: undefined,
