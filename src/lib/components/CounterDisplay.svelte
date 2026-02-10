@@ -10,10 +10,10 @@
 
 <h1 class="title">COUNTER</h1>
 
-<div class="counter-value">{count}</div>
+<div class="counter-value" data-testid="count-display">{count}</div>
 
 {#if lastClicked}
-	<p class="timestamp">Last: {formatLocalTime(lastClicked)}</p>
+	<p class="timestamp" data-testid="last-clicked">Last: {formatLocalTime(lastClicked)}</p>
 {/if}
 
 <style>
