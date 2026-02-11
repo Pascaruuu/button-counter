@@ -2,15 +2,27 @@
 	import { onMount } from 'svelte';
 	import buttonNormal from '$lib/assets/1button.png';
 	import buttonClicked from '$lib/assets/1button-clicked.png';
+	import clickSound from '$lib/assets/click-sound.mp3';
 
 	let isPressed = $state(false);
 	let buttonElement: HTMLButtonElement;
 
+	function playSound() {
+		const audio = new Audio(clickSound);
+		audio.volume = 1.0;
+		audio.play().catch(err => console.log('Audio play failed:', err));
+	}
+
 	onMount(() => {
+		// Need to Preload audio so we can spam hehe
+		const preloadAudio = new Audio(clickSound);
+		preloadAudio.load();
+
 		const handleKeyDown = (event: KeyboardEvent) => {
 			if (event.code === 'Space' && !event.repeat) {
 				event.preventDefault();
 				isPressed = true;
+				playSound();
 				buttonElement?.click();
 			}
 		};
@@ -34,12 +46,16 @@
 <button 
 	bind:this={buttonElement}
 	type="submit" 
-	class="arcade-button"
+	aria-label="+1"
+	class="arcade-button" 
 	class:pressed={isPressed}
-	onmousedown={() => isPressed = true}
+	onmousedown={() => {
+		isPressed = true;
+		playSound();
+	}}
 	onmouseup={() => isPressed = false}
 	onmouseleave={() => isPressed = false}
-> 
+>
 <!-- nothing -->
 </button>
 
