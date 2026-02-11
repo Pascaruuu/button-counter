@@ -46,7 +46,8 @@
 <button 
 	bind:this={buttonElement}
 	type="submit" 
-	class="arcade-button"
+	aria-label="+1"
+	class="arcade-button" 
 	class:pressed={isPressed}
 	onmousedown={() => {
 		isPressed = true;
