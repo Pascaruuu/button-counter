@@ -6,6 +6,8 @@ A retro arcade-themed button counter application built with SvelteKit. Click the
 
 Try the app live at: **[https://button-counter-self.vercel.app/](https://button-counter-self.vercel.app/)**
 
+Link Expiration Date: **2026/02/13**
+
 ## Features
 
 - **Arcade Aesthetic**: Retro pixel-art styling with the "Press Start 2P" font

@@ -6,6 +6,8 @@ SvelteKitを使って、作られるレトロテーマ的にボタンカウン�
 
 アプリを使ってみよう→ **[https://stingray-app-3b4go.ondigitalocean.app/](https://stingray-app-3b4go.ondigitalocean.app/)**
 
+リンクの有効期限：**2026/02/13**
+
 ## 特色
 
 - **レトロテーマ**:　描いたレトロピクセルのカスタムアートと共に"Press Start 2P"というフォントを使っています。
