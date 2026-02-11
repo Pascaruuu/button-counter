@@ -1,38 +1,66 @@
 <script lang="ts">
-	import { enhance } from '$app/forms';
-	import type { PageData } from './$types';
-	import ArcadeFrame from '$lib/components/ArcadeFrame.svelte';
-	import CounterDisplay from '$lib/components/CounterDisplay.svelte';
-	import IncrementButton from '$lib/components/IncrementButton.svelte';
+    import { enhance } from '$app/forms';
+    import { onMount } from 'svelte';
+    import { io } from "socket.io-client";
+    import type { PageData } from './$types';
+    
+    // Components
+    import ArcadeFrame from '$lib/components/ArcadeFrame.svelte';
+    import CounterDisplay from '$lib/components/CounterDisplay.svelte';
+    import IncrementButton from '$lib/components/IncrementButton.svelte';
 
-	let { data }: { data: PageData } = $props();
+    let { data }: { data: PageData } = $props();
+
+    let liveCount = $state(data.countData.counter);
+    let liveLastClicked = $state(data.countData.last_clicked);
+
+	$effect(() => {
+        liveCount = data.countData.counter;
+        liveLastClicked = data.countData.last_clicked;
+    });
+    // The WebSocket Connection
+    onMount(() => {
+        const socket = io();
+
+        // Listen for the broadcast from the server
+        socket.on("new-count", (updatedData: any) => {
+            liveCount = updatedData.counter;
+            liveLastClicked = updatedData.last_clicked;
+        });
+        return () => {
+            socket.disconnect();
+        };
+    });
 </script>
 
 <svelte:head>
-	<link rel="preconnect" href="https://fonts.googleapis.com">
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
-	<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
 </svelte:head>
 
 <div class="screen">
-	<ArcadeFrame />
-	
-	<div class="content-container">
-		<CounterDisplay count={data.count.counter} lastClicked={data.count.last_clicked} />
+    <ArcadeFrame />
+    
+    <div class="content-container">
+        <CounterDisplay count={liveCount} lastClicked={liveLastClicked} />
 
-		<form method="POST" use:enhance={() => {
-			data.count.counter += 1;
-			return async ({ update }) => {
-				await update({ reset: false });
-			};
-		}}>
-			<IncrementButton />
-		</form>
+        <form method="POST" use:enhance={() => {
+            liveCount += 1; 
+            // liveLastClicked = new Date().toISOString();
+
+            return async ({ update }) => {
+                await update({ reset: false });
+            };
+        }}>
+            <IncrementButton />
+        </form>
+
         <div class="hint">
             <span>try</span>
             <span class="spacebar-key">SPACE</span>
         </div>
-	</div>
+    </div>
 </div>
 
 <style>
