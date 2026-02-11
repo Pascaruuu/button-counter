@@ -1,4 +1,5 @@
 // prod-server.js
+import 'dotenv/config';
 import { handler } from './build/handler.js'; // The SvelteKit build output
 import express from 'express';
 import { createServer } from 'http';
@@ -26,7 +27,7 @@ io.on('connection', (socket) => {
     });
 });
 
-// 2. Make 'io' accessible to your API routes via middleware
+// Make 'io' accessible to your API routes via middleware
 // This lets your SvelteKit API routes say "io.emit()"
 app.use((req, res, next) => {
     req.io = io;

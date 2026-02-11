@@ -20,9 +20,5 @@ const webSocketServer = {
 };
 
 export default defineConfig({
-	plugins: [sveltekit(), webSocketServer],
-	ssr: {
-		noExternal: [], // Keep this empty or default
-        external: ['@libsql/client', '@libsql/linux-x64-gnu']
-    }
+	plugins: [sveltekit(), webSocketServer]
 });
