@@ -14,8 +14,8 @@ How to run:
     4. If you get an error, make sure to install "npm install dotenv"
 */
 
-import { createClient } from "@libsql/client";
-import "dotenv/config"; // This loads your .env file automatically
+import { createClient } from '@libsql/client';
+import 'dotenv/config'; // This loads your .env file automatically
 
 // Manually pull from process.env instead of SvelteKit's $env
 const db = createClient({
@@ -24,13 +24,15 @@ const db = createClient({
 });
 
 const resetCounter = async () => {
-    console.log("Attempting to reset counter...");
-    // Note: Use individual executes or a transaction for multiple statements
-    await db.execute("DELETE FROM button_counters");
-    await db.execute("DELETE FROM sqlite_sequence WHERE name = 'button_counters'");
-}
+  console.log('Attempting to reset counter...');
+  // Note: Use individual executes or a transaction for multiple statements
+  await db.execute('DELETE FROM button_counters');
+  await db.execute(
+    "DELETE FROM sqlite_sequence WHERE name = 'button_counters'"
+  );
+};
 
 resetCounter()
-  .then(() => console.log("✅ Counter reset successfully"))
-  .catch((err) => console.error("❌ Error resetting counter:", err))
+  .then(() => console.log('✅ Counter reset successfully'))
+  .catch((err) => console.error('❌ Error resetting counter:', err))
   .finally(() => process.exit());
