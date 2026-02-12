@@ -77,38 +77,38 @@ npm run preview
 ```
 src/
 ├── routes/
-│   ├── +layout.svelte      
-│   ├── +page.svelte        
-│   └── +page.server.ts     
+│   ├── +layout.svelte
+│   ├── +page.svelte
+│   └── +page.server.ts
 ├── lib/
 │   ├── components/
-│   │   ├── ArcadeFrame.svelte    
-│   │   ├── CounterDisplay.svelte 
+│   │   ├── ArcadeFrame.svelte
+│   │   ├── CounterDisplay.svelte
 │   │   ├── IncrementButton.svelte
-│   │   └── schema.sql 
+│   │   └── schema.sql
 │   ├── server/
-│   │   ├── db.ts           
-│   │   ├── db_controllers.ts 
-│   │   └── db_dev.ts       
-│   ├── assets/             
-│   └── index.ts            
+│   │   ├── db.ts
+│   │   ├── db_controllers.ts
+│   │   └── db_dev.ts
+│   ├── assets/
+│   └── index.ts
 tests/
-├── integration_tests/      
-└── unit_tests/             
+├── integration_tests/
+└── unit_tests/
 ```
 
 ## Available Commands
 
-| Command | Description |
-|---------|-------------|
-| `npm run dev` | Start development server |
-| `npm run build` | Build for production |
-| `npm run preview` | Preview production build |
-| `npm run test:unit` | Run unit tests with Vitest |
-| `npm run test:unit:watch` | Run unit tests with Vitest on watch mode |
-| `npm run test:integration` | Run integration tests with playwright |
+| Command                          | Description                                         |
+| -------------------------------- | --------------------------------------------------- |
+| `npm run dev`                    | Start development server                            |
+| `npm run build`                  | Build for production                                |
+| `npm run preview`                | Preview production build                            |
+| `npm run test:unit`              | Run unit tests with Vitest                          |
+| `npm run test:unit:watch`        | Run unit tests with Vitest on watch mode            |
+| `npm run test:integration`       | Run integration tests with playwright               |
 | `npm run test:integration:watch` | Run integration tests with playwright on watch mode |
-| `npm run reset-db` | Reset the development database |
+| `npm run reset-db`               | Reset the development database                      |
 
 ## Database
 
@@ -117,7 +117,7 @@ The application uses LibSQL (SQLite-compatible) to persist the counter value.
 ### Table
 
 This project has one single table named "button_counters"
-| Column | Type | Description | 
+| Column | Type | Description |
 |---------|-------------|-----------|
 | **id** | INTEGER | Primary key with auto-increment. |
 | **counter** | BIGINT | The current count value (default: 0). |

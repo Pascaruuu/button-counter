@@ -35,7 +35,7 @@ SvelteKitを使って、作られるレトロテーマ的にボタンカウン�
 
 ### 前提条件
 
-- Node.js 18+ 
+- Node.js 18+
 - npm
 
 ### インストール
@@ -56,7 +56,7 @@ npm run dev
 ```
 
 その後、ブラウザで [http://localhost:5173](http://localhost:5173)
- を開いてください。
+を開いてください。
 
 アプリをブラウザで自動で開く方法：
 
@@ -83,38 +83,38 @@ npm run preview
 ```
 src/
 ├── routes/
-│   ├── +layout.svelte      
-│   ├── +page.svelte        
-│   └── +page.server.ts     
+│   ├── +layout.svelte
+│   ├── +page.svelte
+│   └── +page.server.ts
 ├── lib/
 │   ├── components/
-│   │   ├── ArcadeFrame.svelte    
-│   │   ├── CounterDisplay.svelte 
+│   │   ├── ArcadeFrame.svelte
+│   │   ├── CounterDisplay.svelte
 │   │   ├── IncrementButton.svelte
-│   │   └── schema.sql 
+│   │   └── schema.sql
 │   ├── server/
-│   │   ├── db.ts           
-│   │   ├── db_controllers.ts 
-│   │   └── db_dev.ts       
-│   ├── assets/             
-│   └── index.ts            
+│   │   ├── db.ts
+│   │   ├── db_controllers.ts
+│   │   └── db_dev.ts
+│   ├── assets/
+│   └── index.ts
 tests/
-├── integration_tests/      
-└── unit_tests/             
+├── integration_tests/
+└── unit_tests/
 ```
 
 ## 使用可能なコマンド
 
-| コマンド | 説明 |
-|---------|-------------|
-| `npm run dev` | 開発サーバーを起動 |
-| `npm run build` | 本番用ビルドを作成 |
-| `npm run preview` | 本番ビルドをローカルでプレビュー |
-| `npm run test:unit` | Vitestで単体テストを実行 |
-| `npm run test:unit:watch` | Vitestのウォッチモードで単体テストを実行 |
-| `npm run test:integration` | Playwrightで統合テストを実行 |
+| コマンド                         | 説明                                         |
+| -------------------------------- | -------------------------------------------- |
+| `npm run dev`                    | 開発サーバーを起動                           |
+| `npm run build`                  | 本番用ビルドを作成                           |
+| `npm run preview`                | 本番ビルドをローカルでプレビュー             |
+| `npm run test:unit`              | Vitestで単体テストを実行                     |
+| `npm run test:unit:watch`        | Vitestのウォッチモードで単体テストを実行     |
+| `npm run test:integration`       | Playwrightで統合テストを実行                 |
 | `npm run test:integration:watch` | Playwrightのウォッチモードで統合テストを実行 |
-| `npm run reset-db` | 開発者用：DBリセット |
+| `npm run reset-db`               | 開発者用：DBリセット                         |
 
 ## データベース
 
@@ -123,7 +123,7 @@ tests/
 ### テーブル
 
 Tこのプロジェクトには "button_counters" という単一のテーブルがあります。
-| カラム | 型 | 説明 | 
+| カラム | 型 | 説明 |
 |---------|-------------|-----------|
 | **id** | INTEGER | 自動増分の主キー |
 | **counter** | BIGINT | 現在のカウント値（デフォルト: 0） |

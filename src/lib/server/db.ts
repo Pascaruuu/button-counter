@@ -1,5 +1,5 @@
-import { TURSO_DB_URL, TURSO_DB_AUTH_TOKEN } from "$env/static/private";
-import { createClient } from "@libsql/client/web";
+import { TURSO_DB_URL, TURSO_DB_AUTH_TOKEN } from '$env/static/private';
+import { createClient } from '@libsql/client/web';
 
 export const db = createClient({
   url: TURSO_DB_URL,

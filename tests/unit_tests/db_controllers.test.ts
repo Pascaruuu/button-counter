@@ -1,5 +1,8 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { getDataFromDB, incrementCounter } from '../../src/lib/server/db_controllers';
+import {
+  getDataFromDB,
+  incrementCounter,
+} from '../../src/lib/server/db_controllers';
 import { db } from '../../src/lib/server/db';
 
 // Mock the db module
@@ -17,25 +20,29 @@ describe('counterService', () => {
   describe('getDataFromDB', () => {
     it('returns formatted data when a row exists', async () => {
       // Setup: Mock a database response
-      const mockTimestamp = "2024-06-01 12:00:00";
+      const mockTimestamp = '2024-06-01 12:00:00';
       vi.mocked(db.execute).mockResolvedValueOnce({
-        rows: [{
-          counter: 5, 
-          last_clicked: mockTimestamp,
-          length: 0
-        }],
+        rows: [
+          {
+            counter: 5,
+            last_clicked: mockTimestamp,
+            length: 0,
+          },
+        ],
         columns: [],
         rowsAffected: 0,
         lastInsertRowid: undefined,
         columnTypes: [],
         toJSON: function () {
           throw new Error('Function not implemented.');
-        }
+        },
       });
 
       const result = await getDataFromDB();
 
-      expect(db.execute).toHaveBeenCalledWith(expect.stringContaining('SELECT counter'));
+      expect(db.execute).toHaveBeenCalledWith(
+        expect.stringContaining('SELECT counter')
+      );
       expect(result).toEqual({
         counter: 5,
         last_clicked: mockTimestamp,
@@ -52,7 +59,7 @@ describe('counterService', () => {
         columnTypes: [],
         toJSON: function () {
           throw new Error('Function not implemented.');
-        }
+        },
       });
 
       const result = await getDataFromDB();
@@ -75,11 +82,13 @@ describe('counterService', () => {
         columnTypes: [],
         toJSON: function () {
           throw new Error('Function not implemented.');
-        }
+        },
       });
 
       await expect(incrementCounter()).resolves.not.toThrow();
-      expect(db.execute).toHaveBeenCalledWith(expect.stringContaining('INSERT INTO button_counters'));
+      expect(db.execute).toHaveBeenCalledWith(
+        expect.stringContaining('INSERT INTO button_counters')
+      );
     });
 
     it('throws an error if rowsAffected is 0', async () => {
@@ -92,10 +101,12 @@ describe('counterService', () => {
         columnTypes: [],
         toJSON: function () {
           throw new Error('Function not implemented.');
-        }
+        },
       });
 
-      await expect(incrementCounter()).rejects.toThrow("Failed to update counter");
+      await expect(incrementCounter()).rejects.toThrow(
+        'Failed to update counter'
+      );
     });
   });
 });
