@@ -1,6 +1,7 @@
 // unit testing all the functions in page.server.ts
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { load, actions } from '../../src/routes/+page.server';
+import type { ServerLoadEvent } from '@sveltejs/kit';
 import {
   getDataFromDB,
   incrementCounter,
@@ -24,11 +25,16 @@ describe('page.server', () => {
       const mockCount = { counter: 5, last_clicked: '2024-06-01 12:00:00' };
       vi.mocked(getDataFromDB).mockResolvedValueOnce(mockCount);
 
-      const mockEvent = {} as any;
+      const mockEvent = {} as unknown as ServerLoadEvent<
+        Record<string, never>, // 1. Params (Empty for root route)
+        Record<string, never>, // 2. Parent Data
+        '/' // 3. Route ID (Must match the expected string)
+      >;
+
       const result = await load(mockEvent);
 
       expect(getDataFromDB).toHaveBeenCalled();
-      expect(result).toEqual({ count: mockCount });
+      expect(result).toEqual({ countData: mockCount });
     });
   });
 

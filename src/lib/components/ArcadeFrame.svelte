@@ -1,7 +1,3 @@
-<script lang="ts">
-	import arcadeFrame from '$lib/assets/arcade_frame.png';
-</script>
-
 <div class="arcade-frame"></div>
 
 <style>

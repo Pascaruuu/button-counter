@@ -1,7 +1,5 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import buttonNormal from '$lib/assets/1button.png';
-	import buttonClicked from '$lib/assets/1button-clicked.png';
 	import clickSound from '$lib/assets/click-sound.mp3';
 
 	let isPressed = $state(false);
