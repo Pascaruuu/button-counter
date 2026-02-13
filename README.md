@@ -4,7 +4,7 @@ A retro arcade-themed button counter application built with SvelteKit. Click the
 
 ## Live Demo
 
-Try the app live at: **[https://button-counter-self.vercel.app/](https://button-counter-self.vercel.app/)**
+Try the app live at: **[https://stingray-app-3b4go.ondigitalocean.app/](https://stingray-app-3b4go.ondigitalocean.app/)**
 
 Link Expiration Date: **2026/02/13**
 
