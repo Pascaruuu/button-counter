@@ -2,12 +2,12 @@ import { getDataFromDB, incrementCounter } from '$lib/server/db_controllers';
 import type { PageServerLoad, Actions } from './$types';
 import { fail } from '@sveltejs/kit';
 
-function getSocketIO(platform: any) {
+function getSocketIO(platform: App.Platform | undefined) {
   // Production (Adapter Node)
   if (platform?.req?.io) return platform.req.io;
 
   // Development (Vite Global Hack)
-  // @ts-ignore
+  // @ts-expect-error might return error if the Vite is not properly configure
   if (globalThis.io) return globalThis.io;
   return null;
 }
@@ -31,7 +31,7 @@ export const actions = {
 
       return { success: true };
     } catch (e) {
-      return fail(500, { message: 'Could not update counter' });
+      return fail(500, { message: `Could not update counter ${e}` });
     }
   },
 } satisfies Actions;
